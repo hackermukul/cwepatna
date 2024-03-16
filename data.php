@@ -8,60 +8,23 @@
 	   		//$result=mysqli_query($this->link,$sql);
 	   		return $result;
 	   }
-	   public function getserialno()
-	   {
-	   		$sql="select * from student_details order by serail_no desc limit 1";
-	   		$result=$this->selectdata($sql);
-	   		$details=$result['single_row'];
-	   		$serail_no=$details['id'];
-	   		return $serail_no;
-	   }
-
 	   public function getstudentdata($id)
 	   {
 	   		$sql="select * from  student_details where id='$id'";
 	   		$result=$this->selectdata($sql);
 	   		return $result;
 	   }
-	   public function getstudentinfodata($id)
-    {
-
-         $sql="select * from student_details where reg_no='$id'";
-         $studentinfo=$this->selectdata($sql);
-         $studentinfo=$studentinfo['single_row'];
-         return $studentinfo;
-    }
 	   public function getstudentinfo($roll)
 	   {
 	   		$sql="select * from  student_details where reg_no='$roll' or mobile_no='$roll'";
 	   		$result=$this->selectdata($sql);
 	   		return $result;
 	   }
-	   /*public function getstudentinfo($typing)
-	   {
-	   		$sql="select * from  student_details where serail_no='$typing' or date_birth='$typing'";
-	   		$result=$this->selectdata($sql);
-	   		return $result;
-	   }*/
 	   public function getcourse_category()
 	   {
 	   		$sql="select * from course_category";
 	   		$result=$this->selectdata($sql);
 	   		//$result=mysqli_query($this->link,$sql);
-	   		return $result;
-	   }
-
-	   public function getenquiry_details()
-	   {
-	   		$sql="select * from enquiry_details";
-	   		$result=$this->selectdata($sql);
-	   		//$result=mysqli_query($this->link,$sql);
-	   		return $result;
-	   }
-	   public function getenquirydata($id)
-	   {
-	   		$sql="select * from  enquiry_details where id='$id'";
-	   		$result=$this->selectdata($sql);
 	   		return $result;
 	   }
 	   
@@ -103,32 +66,13 @@
 	   		$result=$this->selectdata($sql);
 	   		return $result;
 	   }
-	    public function getCourseDetails($cat,$course)
-	   {
-	   		$sql="select * from  add_newcourse where cat_course='$cat' and course_name='$course'";
-	   		$result=$this->selectdata($sql);
-	   		return $result['single_row'];
-	   }
-	    public function getcertificateList($reg_no)
-     {
-        $sql="SELECT * FROM certificate_details INNER JOIN student_details ON certificate_details.reg_no=student_details.reg_no";
-        $studentjoindetails=$this->selectdata($sql);
-        if($studentjoindetails!=FALSE)
-        {
-            return $studentjoindetails['total_row'];   
-        }
-        else
-            return FALSE;
-     }
+	   
 	  
 	   public function certificatedetails($reg_no)
 	   {
 	   		$sql="SELECT * FROM certificate_details INNER JOIN student_details ON certificate_details.reg_no=student_details.reg_no where certificate_details.reg_no='$reg_no'";
 	   		$result=$this->selectdata($sql);
-	   		if($result==FALSE)
-	   			return FALSE;
-	   		else
-	   	    	return $result['single_row'];
+	   	     return $result;
 	   }
 
 	   public function getnewcertificate($id)
@@ -161,7 +105,7 @@
 	   }
 	    public function getslider_details()
 	   {
-	   		$sql="select * from slider_details where status='Enable'";
+	   		$sql="select * from slider_details";
 	   		$result=$this->selectdata($sql);
 	   		//$result=mysqli_query($this->link,$sql);
 	   		return $result;
@@ -172,21 +116,28 @@
 	   		$result=$this->selectdata($sql);
 	   		return $result;
 	   }
-	   
+	   public function getserialno()
+	   {
+	   		$sql="select * from certificate_details order by id desc limit 1";
+	   		$result=$this->selectdata($sql);
+	   		$details=$result['single_row'];
+	   		$id=$details['id'];
+	   		return $id;
+	   }
 	   public function getmonths()
 	   {
 	   		return array("Janaury","February","March","April","May","June","July","August","September","October","November","December");
 	   }
-	    public function getaboutdata()
+	    public function getaboutdata($id)
 	   {
-	   		$sql="select * from  about_details where id='3'";
+	   		$sql="select * from  about_details where id='$id'";
 	   		$result=$this->selectdata($sql);
 	   		return $result;
 	   }
 
 	    public function getabout_details()
 	   {
-	   		$sql="select * from about_details where id='3'";
+	   		$sql="select * from about_details";
 	   		$result=$this->selectdata($sql);
 	   		//$result=mysqli_query($this->link,$sql);
 	   		return $result;
@@ -206,7 +157,6 @@
 	   		//$result=mysqli_query($this->link,$sql);
 	   		return $result;
 	   }
-
 	   
 	   public function getdashboardreport()
   {
